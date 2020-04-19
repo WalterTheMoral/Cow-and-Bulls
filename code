@@ -1,0 +1,62 @@
+import random
+
+num = str(random.randint(1000,9999))
+num = set(num)
+num = list(num)
+
+while len(num) < 4:
+  num = set(num)
+  num = list(num)
+  if len(num) == 4:
+    break
+  num = str(random.randint(1000,9999))
+  num = set(num)
+
+num = list(num)
+def bye():
+  print("Ohhhh, you're leaving.")
+
+print("I'm going to play a game of Cows and Bulls with you.")
+print("I'm going to think of a four digit number and you're going to have to guess it.")
+print("There are no repeating digits in this number.")
+print("If a number you guess is correct but it's in the wrong spot, it's a cow")
+print("If a number you guess is correct and it's in the right spot, you get a bull.")
+print("The game ends when you get four bulls.")
+print("You can type quit at any type to quit")
+print("")
+bull_count = 0
+cow_count = 0
+count = 1
+
+while bull_count != 4:
+  guess = input("What is your 4 digit guess? ")
+
+  for number in range(len(num)):
+    if num[number] == guess[number]:
+      bull_count += 1
+    elif guess[number] in num:
+      cow_count += 1
+
+  if guess == "ccaie":
+    print(num)
+
+  if bull_count == 4:
+    print("")
+    break
+
+  if guess == "quit":
+    print()
+    break
+
+  print(f"You got {str(bull_count)} bulls and {str(cow_count)} cows.")
+  cow_count = 0
+  bull_count = 0
+  count +=1
+
+
+
+if bull_count == 4:
+  print(f"You won! You gussed my four digit number in {str(count)} tries.!")
+
+else:
+  print(f"You got {str(bull_count)} bulls and {str(cow_count)} cows, but you needed 4 bulls and 0 cows.")
